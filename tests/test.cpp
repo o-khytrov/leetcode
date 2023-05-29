@@ -31,6 +31,14 @@ TEST(longestCommonPrefix, flower) {
     ASSERT_STREQ("fl", result);
 }
 
+TEST(FindPivotIndex, Case1) {
+
+    int nums[] = {1, 7, 3, 6, 5, 6};
+    int size = (sizeof(nums) / sizeof(nums[0]));
+    int result = pivotIndex(nums, size);
+
+    ASSERT_EQ(3, result);
+}
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

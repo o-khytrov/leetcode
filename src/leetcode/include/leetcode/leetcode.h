@@ -30,6 +30,10 @@ If there is no common prefix, return an empty string "".
  **/
 char *longestCommonPrefix(char **strs, int strsSize);
 
+//724. Find Pivot Index
+
+int pivotIndex(int *nums, int numsSize);
+
 #ifdef __cplusplus
 }
 #endif
