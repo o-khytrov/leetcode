@@ -156,6 +156,18 @@ char *longestCommonPrefix(char **strs, int strsSize) {
 }
 
 int pivotIndex(int *nums, int numsSize) {
+    int sum = 0;
+    for (int i = 0; i < numsSize; i++) {
+        sum += nums[i];
+    }
+    int tmp_sum = 0;
+    for (int i = 0; i < numsSize; i++) {
+        if (sum - (tmp_sum + nums[i]) == tmp_sum) {
 
+            return i;
+        }
+
+        tmp_sum += nums[i];
+    }
     return -1;
 }
