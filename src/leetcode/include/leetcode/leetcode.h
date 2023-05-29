@@ -34,6 +34,11 @@ char *longestCommonPrefix(char **strs, int strsSize);
 
 int pivotIndex(int *nums, int numsSize);
 
+//27. Remove Element
+int removeElement(int *nums, int numsSize, int val);
+
+//929. Unique Email Addresses
+int numUniqueEmails(char ** emails, int emailsSize);
 #ifdef __cplusplus
 }
 #endif

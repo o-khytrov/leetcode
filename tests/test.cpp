@@ -40,6 +40,43 @@ TEST(FindPivotIndex, Case1) {
     ASSERT_EQ(3, result);
 }
 
+TEST(removeElement, Case1) {
+
+    int nums[] = {3, 2, 2, 3};
+    int size = (sizeof(nums) / sizeof(nums[0]));
+    int result = removeElement(nums, size, 3);
+    int expected[] = {2, 2};
+    ASSERT_EQ(2, result);
+    for (int i = 0; i < result; ++i) {
+        ASSERT_EQ(expected[i], nums[i]);
+    }
+}
+
+TEST(removeElement, Case2) {
+
+    int nums[] = {0, 1, 2, 2, 3, 0, 4, 2};
+    int size = (sizeof(nums) / sizeof(nums[0]));
+    int result = removeElement(nums, size, 2);
+    int expected[] = {0, 1, 4, 0, 3};
+    ASSERT_EQ(5, result);
+    for (int i = 0; i < result; ++i) {
+        ASSERT_EQ(expected[i], nums[i]);
+    }
+
+}
+
+TEST(numUniqueEmails, Case1) {
+
+    char *strs[] = {"test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com",
+                    "testemail+david@lee.tcode.com"};  // Example input strings
+    int strsSize = sizeof(strs) / sizeof(strs[0]);   // Calculate the number of strings
+
+    int result = numUniqueEmails(strs, strsSize);  // Call the function with the parameters
+
+    ASSERT_EQ(2, result);
+}
+
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

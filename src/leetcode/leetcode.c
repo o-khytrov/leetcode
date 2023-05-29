@@ -171,3 +171,33 @@ int pivotIndex(int *nums, int numsSize) {
     }
     return -1;
 }
+
+int removeElement(int *nums, int numsSize, int val) {
+    int tmp[numsSize];
+    int counter = 0;
+    for (int i = 0; i < numsSize; ++i) {
+        if (nums[i] != val) {
+            tmp[counter] = nums[i];
+            counter++;
+        }
+    }
+
+    memcpy(nums, &tmp, counter * sizeof(int));
+
+    return counter;
+}
+
+int numUniqueEmails(char **emails, int emailsSize) {
+    int counter = 0;
+    for (int i = 0; i < emailsSize; ++i) {
+        int part = 0; //0-local; 1- domain;
+        char *email = emails[i];
+        while (email) {
+            if (email == '@') {
+                part = 1;
+            }
+
+        }
+
+    }
+}
