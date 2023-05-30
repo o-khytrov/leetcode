@@ -76,6 +76,59 @@ TEST(numUniqueEmails, Case1) {
     ASSERT_EQ(2, result);
 }
 */
+TEST(isIsomorphic, Case1) {
+
+    bool result = isIsomorphic("egg", "add");
+
+    ASSERT_EQ(true, result);
+}
+
+TEST(isIsomorphic, Case2) {
+
+    bool result = isIsomorphic("foo", "bar");
+
+    ASSERT_EQ(false, result);
+}
+
+TEST(isIsomorphic, Case3) {
+
+    bool result = isIsomorphic("paper", "title");
+
+    ASSERT_EQ(true, result);
+}
+
+TEST(checkPossibility, Case1) {
+
+    int nums[] = {4, 2, 3};
+    bool result = checkPossibility(nums, 3);
+
+    ASSERT_EQ(true, result);
+}
+
+
+TEST(checkPossibility, Case2) {
+
+    int nums[] = {4, 2, 1};
+    bool result = checkPossibility(nums, 3);
+
+    ASSERT_EQ(false, result);
+}
+
+TEST(checkPossibility, Case3) {
+
+    int nums[] = {3, 4, 2, 3};
+    bool result = checkPossibility(nums, 4);
+
+    ASSERT_EQ(false, result);
+}
+
+TEST(checkPossibility, Case4) {
+
+    int nums[] = {1, 1, 1};
+    bool result = checkPossibility(nums, 3);
+
+    ASSERT_EQ(true, result);
+}
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

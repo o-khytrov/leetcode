@@ -38,7 +38,14 @@ int pivotIndex(int *nums, int numsSize);
 int removeElement(int *nums, int numsSize, int val);
 
 //929. Unique Email Addresses
-int numUniqueEmails(char ** emails, int emailsSize);
+int numUniqueEmails(char **emails, int emailsSize);
+
+//205. Isomorphic Strings
+
+bool isIsomorphic(char *s, char *t);
+//665. Non-decreasing Array
+bool checkPossibility(int* nums, int numsSize);
+
 #ifdef __cplusplus
 }
 #endif

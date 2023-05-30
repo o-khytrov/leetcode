@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 #include <leetcode/leetcode.h>
+#include <leetcode/uthash.h>
 
 int strStr(char *haystack, char *needle) {
     int h, n = 0;
@@ -202,5 +203,43 @@ int numUniqueEmails(char **emails, int emailsSize) {
 
     }
     return counter;
+}
+
+bool isIsomorphic(char *s, char *t) {
+
+    int map_s[256] = {0};
+    int map_t[256] = {0};
+    int i = 0;
+
+    while (s[i]) {
+        if (map_s[s[i]] != map_t[t[i]]) {
+            return false;
+        }
+        map_s[s[i]] = i + 1;
+        map_t[t[i]] = i + 1;
+        i++;
+    }
+    return true;
+}
+
+bool checkPossibility(int *nums, int numsSize) {
+
+    int changed = 0;
+    for (int i = 0; i < numsSize - 1; ++i) {
+
+        if (nums[i] <= nums[i + 1]) {
+            continue;
+        }
+        if (changed) return false;
+
+        if (i == 0 || nums[i + 1] >= nums[i - 1]) {
+            nums[i] = nums[i + 1];
+        } else {
+            nums[i + 1] = nums[i];
+        }
+        changed = 1;
+    }
+
+    return true;
 }
 
