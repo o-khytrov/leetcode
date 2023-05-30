@@ -196,8 +196,11 @@ int numUniqueEmails(char **emails, int emailsSize) {
             if (email == '@') {
                 part = 1;
             }
+            email++;
 
         }
 
     }
+    return counter;
 }
+

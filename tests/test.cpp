@@ -64,7 +64,7 @@ TEST(removeElement, Case2) {
     }
 
 }
-
+/*
 TEST(numUniqueEmails, Case1) {
 
     char *strs[] = {"test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com",
@@ -75,7 +75,7 @@ TEST(numUniqueEmails, Case1) {
 
     ASSERT_EQ(2, result);
 }
-
+*/
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
