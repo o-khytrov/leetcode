@@ -244,21 +244,42 @@ bool checkPossibility(int *nums, int numsSize) {
 }
 
 int *findAnagrams(char *s, char *p, int *returnSize) {
-    char p_map[256] = {0};
+    int p_map[26] = {0};
+    int s_map[26] = {0};
     int p_len = 0;
-    while (*p) {
-        p_map[*p] += 1;
-        p++;
+    char *p_tpm = p;
+    while (*p_tpm) {
+        int c = *p_tpm - 97;
+        p_map[c] += 1;
+        p_tpm++;
         p_len++;
     }
     int s_len = strlen(s);
+    int *ptr = (int *) malloc(s_len * sizeof(int));
+    *returnSize = 0;
+    for (int j = 0; j < s_len; ++j) {
 
+    }
+    int l = 0;
+    int r = 3;
+    for (; l < r; l++) {
+        int c = s[l] - 97;
+        s_map[c]++;
 
-    for (int i = 0; i < s_len; ++i) {
-
-        if (p_map[s[i]]) {
-            int a = 1;
+    }
+    int is_anagram = 1;
+    for (int i = 0; i < 26; ++i) {
+        if (s_map[i] != p_map[i]) {
+            is_anagram = 0;
+            break;
         }
     }
+    if (is_anagram) {
+        ptr[*returnSize] = 0;
+        returnSize++;
+    }
+
+
+    return ptr;
 }
 
