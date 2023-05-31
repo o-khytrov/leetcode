@@ -257,26 +257,32 @@ int *findAnagrams(char *s, char *p, int *returnSize) {
     int s_len = strlen(s);
     int *ptr = (int *) malloc(s_len * sizeof(int));
     *returnSize = 0;
-    for (int j = 0; j < s_len; ++j) {
 
-    }
     int l = 0;
-    int r = 3;
-    for (; l < r; l++) {
-        int c = s[l] - 97;
-        s_map[c]++;
-
-    }
-    int is_anagram = 1;
-    for (int i = 0; i < 26; ++i) {
-        if (s_map[i] != p_map[i]) {
-            is_anagram = 0;
-            break;
+    int r = p_len;
+    while (r <= s_len) {
+        if (l == 0) {
+            for (int i = l; i < r; i++) {
+                int c = s[i] - 97;
+                s_map[c]++;
+            }
+        } else {
+            s_map[s[(l - 1)] - 97]--;
+            s_map[s[(r - 1)] - 97]++;
         }
-    }
-    if (is_anagram) {
-        ptr[*returnSize] = 0;
-        returnSize++;
+        int is_anagram = 1;
+        for (int i = 0; i < 26; ++i) {
+            if (s_map[i] != p_map[i]) {
+                is_anagram = 0;
+                break;
+            }
+        }
+        if (is_anagram) {
+            ptr[*returnSize] = l;
+            (*returnSize)++;
+        }
+        r++;
+        l++;
     }
 
 

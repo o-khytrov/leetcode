@@ -132,12 +132,25 @@ TEST(checkPossibility, Case4) {
 
 TEST(FindAnagrams, Case1) {
 
-    int *resultSize;
-    int *result = findAnagrams("cbaebabacd", "abc", resultSize);
+    int resultSize = 0;
+    int *result = findAnagrams("cbaebabacd", "abc", &resultSize);
 
     int expected[] = {0, 6};
-    ASSERT_EQ(2, *resultSize);
-    for (int i = 0; i < *resultSize; ++i) {
+    ASSERT_EQ(2, resultSize);
+    for (int i = 0; i < resultSize; ++i) {
+        ASSERT_EQ(expected[i], result[i]);
+    }
+
+}
+
+TEST(FindAnagrams, Case2) {
+
+    int resultSize = 0;
+    int *result = findAnagrams("abab", "ab", &resultSize);
+
+    int expected[] = {0, 1, 2};
+    ASSERT_EQ(3, resultSize);
+    for (int i = 0; i < resultSize; ++i) {
         ASSERT_EQ(expected[i], result[i]);
     }
 
