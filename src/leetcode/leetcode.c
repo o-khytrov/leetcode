@@ -243,3 +243,22 @@ bool checkPossibility(int *nums, int numsSize) {
     return true;
 }
 
+int *findAnagrams(char *s, char *p, int *returnSize) {
+    char p_map[256] = {0};
+    int p_len = 0;
+    while (*p) {
+        p_map[*p] += 1;
+        p++;
+        p_len++;
+    }
+    int s_len = strlen(s);
+
+
+    for (int i = 0; i < s_len; ++i) {
+
+        if (p_map[s[i]]) {
+            int a = 1;
+        }
+    }
+}
+

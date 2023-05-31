@@ -44,8 +44,9 @@ int numUniqueEmails(char **emails, int emailsSize);
 
 bool isIsomorphic(char *s, char *t);
 //665. Non-decreasing Array
-bool checkPossibility(int* nums, int numsSize);
-
+bool checkPossibility(int *nums, int numsSize);
+//438. Find All Anagrams in a String
+int *findAnagrams(char *s, char *p, int *returnSize);
 #ifdef __cplusplus
 }
 #endif

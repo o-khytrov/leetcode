@@ -130,6 +130,19 @@ TEST(checkPossibility, Case4) {
     ASSERT_EQ(true, result);
 }
 
+TEST(FindAnagrams, Case1) {
+
+    int *resultSize;
+    int *result = findAnagrams("cbaebabacd", "abc", resultSize);
+
+    int expected[] = {0, 6};
+    ASSERT_EQ(2, *resultSize);
+    for (int i = 0; i < *resultSize; ++i) {
+        ASSERT_EQ(expected[i], result[i]);
+    }
+
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
