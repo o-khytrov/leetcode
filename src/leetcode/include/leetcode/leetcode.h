@@ -49,6 +49,11 @@ bool checkPossibility(int *nums, int numsSize);
 int *findAnagrams(char *s, char *p, int *returnSize);
 //496. Next Greater Element I
 int *nextGreaterElement(int *nums1, int nums1Size, int *nums2, int nums2Size, int *returnSize);
+//503. Next Greater Element II
+int *nextGreaterElements(int *nums, int numsSize, int *returnSize);
+//1189. Maximum Number of Balloons
+int maxNumberOfBalloons(char * text);
+
 #ifdef __cplusplus
 }
 #endif

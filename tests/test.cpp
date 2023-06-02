@@ -186,6 +186,71 @@ TEST(NextGreaterElement1, Case2) {
     }
 }
 
+TEST(NextGreaterElement2, Case1) {
+
+    int resultSize = 0;
+    int nums1[] = {1, 2, 1};
+    int nums1Size = sizeof(nums1) / sizeof(nums1[0]);
+    int expected[] = {2, -1, 2};
+    int *result = nextGreaterElements(nums1, nums1Size, &resultSize);
+    ASSERT_EQ(3, resultSize);
+    for (int i = 0; i < resultSize; ++i) {
+        ASSERT_EQ(expected[i], result[i]);
+    }
+}
+
+TEST(NextGreaterElement2, Case2) {
+
+    int resultSize = 0;
+    int nums1[] = {1, 5, 3, 6, 8};
+    int nums1Size = sizeof(nums1) / sizeof(nums1[0]);
+    int expected[] = {5, 6, 6, 8, -1};
+    int *result = nextGreaterElements(nums1, nums1Size, &resultSize);
+    ASSERT_EQ(5, resultSize);
+    for (int i = 0; i < resultSize; ++i) {
+        ASSERT_EQ(expected[i], result[i]);
+    }
+}
+
+
+TEST(NextGreaterElement2, Case3) {
+
+    int resultSize = 0;
+    int nums1[] = {5, 4, 3, 2, 1};
+    int nums1Size = sizeof(nums1) / sizeof(nums1[0]);
+    int expected[] = {-1, 5, 5, 5, 5};
+    int *result = nextGreaterElements(nums1, nums1Size, &resultSize);
+    ASSERT_EQ(5, resultSize);
+    for (int i = 0; i < resultSize; ++i) {
+        ASSERT_EQ(expected[i], result[i]);
+    }
+}
+
+
+TEST(NextGreaterElement2, Case4) {
+
+    int resultSize = 0;
+    int nums1[] = {1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 100};
+    int nums1Size = sizeof(nums1) / sizeof(nums1[0]);
+    int expected[] = {2, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, -1};
+    int expectedSize = sizeof expected / sizeof(expected[1]);
+    int *result = nextGreaterElements(nums1, nums1Size, &resultSize);
+    ASSERT_EQ(expectedSize, resultSize);
+    for (int i = 0; i < resultSize; ++i) {
+        ASSERT_EQ(expected[i], result[i]);
+    }
+}
+
+TEST (MaxNumberOfBalloons, TestCase1) {
+    int result = maxNumberOfBalloons("nlaebolko");
+    ASSERT_EQ(1, result);
+}
+
+TEST (MaxNumberOfBalloons, TestCase2) {
+    int result = maxNumberOfBalloons("loonbalxballpoon");
+    ASSERT_EQ(2, result);
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

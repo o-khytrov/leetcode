@@ -310,3 +310,63 @@ int *nextGreaterElement(int *nums1, int nums1Size, int *nums2, int nums2Size, in
     return ans;
 }
 
+int *nextGreaterElements(int *nums, int numsSize, int *returnSize) {
+    int *ans = malloc(sizeof(int) * numsSize);
+
+    *returnSize = numsSize;
+    for (int i = 0; i < numsSize; ++i) {
+        int num = nums[i];
+        int next_greater = -1;
+        int counter = 0;
+        int j = i == numsSize - 1 ? 0 : i + 1;
+        while (counter <= numsSize) {
+            if (nums[j] > num) {
+                next_greater = nums[j];
+                break;
+            }
+            counter++;
+            if (j == numsSize - 1) {
+                j = 0;
+            } else {
+                j++;
+            }
+        }
+
+        ans[i] = next_greater;
+    }
+    return ans;
+}
+
+int maxNumberOfBalloons(char *text) {
+    int word_map[26] = {0};
+    char *word = "balloon";
+    while (*word) {
+        word_map[*word - 97]++;
+        word++;
+    }
+    int result = 0;
+
+    int map[26] = {0};
+    char *text_ptr = text;
+    while (*text_ptr) {
+        map[*text_ptr - 97]++;
+        text_ptr++;
+    }
+    for (int i = 0; i < 26; ++i) {
+        if (word_map[i] != 0) {
+            if (map[i] < word_map[i]) {
+                result = 0;
+                break;
+            } else {
+                int cnt = map[i] / word_map[i];
+                if (result == 0 || cnt < result) {
+                    result = cnt;
+                }
+
+            }
+        }
+    }
+
+    return result;
+}
+
