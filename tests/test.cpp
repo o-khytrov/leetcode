@@ -251,6 +251,31 @@ TEST (MaxNumberOfBalloons, TestCase2) {
     ASSERT_EQ(2, result);
 }
 
+TEST (WordPattern, TestCase1) {
+    bool result = wordPattern("abba", "dog cat cat fish");
+    ASSERT_EQ(false, result);
+}
+
+TEST (FindDifferenceOfTwoArrays, TestCase1) {
+    int resultSize = 0;
+    int *resultColumnSizes;
+    int nums1[] = {1, 2, 3};
+    int nums1Size = sizeof(nums1) / sizeof(nums1[0]);
+
+    int nums2[] = {2, 4, 6};
+    int nums2Size = sizeof(nums2) / sizeof(nums2[0]);
+
+
+    int expected1[] = {1, 3};
+    int expected2[] = {4, 6};
+
+    int expectedSize = sizeof expected1 / sizeof(expected1[1]);
+    int **result = findDifference(nums1, nums1Size, nums2, nums2Size, &resultSize, &resultColumnSizes);
+
+
+}
+
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

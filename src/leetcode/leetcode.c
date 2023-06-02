@@ -370,3 +370,61 @@ int maxNumberOfBalloons(char *text) {
     return result;
 }
 
+bool wordPattern(char *pattern, char *s) {
+    int len = strlen(pattern);
+    char **map = malloc(sizeof(char) * len);
+    char *tmp = s;
+    for (int i = 0; i < len; ++i) {
+        if (*tmp == '\0')
+            break;
+        if (*tmp == ' ') tmp++;
+        map[i] = tmp;
+        while (*tmp != ' ' && tmp != '\0') {
+            tmp++;
+        }
+    }
+    return true;
+}
+
+int **findDifference(int *nums1, int nums1Size, int *nums2, int nums2Size, int *returnSize, int **returnColumnSizes) {
+    const int max_size = 2048;
+    int map1[2048] = {0};
+    int map2[2048] = {0};
+    int offset = 1000;
+    for (int i = 0; i < nums1Size; i++) {
+        map1[nums1[i] + offset] = 1;
+    }
+    for (int i = 0; i < nums2Size; i++) {
+        map2[nums2[i] + offset] = 1;
+    }
+    int maxSize = (nums1Size > nums2Size) ? nums1Size : nums2Size;
+    *returnSize = 2;
+
+    int **ans = (int **) malloc(*returnSize * sizeof(int *));
+    int *ans1 = (int *) malloc(maxSize * sizeof(int));
+    int *ans2 = (int *) malloc(maxSize * sizeof(int));
+    int *colSizes = malloc(*returnSize * sizeof(int));
+
+    int ans1Size = 0;
+    int ans2Size = 0;
+    for (int i = 0; i < max_size; i++) {
+        if (map1[i] && !map2[i]) {
+            ans1[ans1Size] = i - offset;
+            ans1Size++;
+        }
+
+        if (map2[i] && !map1[i]) {
+            ans2[ans2Size] = i - offset;
+            ans2Size++;
+        }
+
+    }
+    ans[0] = ans1;
+    ans[1] = ans2;
+
+    colSizes[0] = ans1Size;
+    colSizes[1] = ans2Size;
+    *returnColumnSizes = colSizes;
+    return ans;
+
+}
