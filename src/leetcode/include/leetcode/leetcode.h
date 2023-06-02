@@ -47,6 +47,8 @@ bool isIsomorphic(char *s, char *t);
 bool checkPossibility(int *nums, int numsSize);
 //438. Find All Anagrams in a String
 int *findAnagrams(char *s, char *p, int *returnSize);
+//496. Next Greater Element I
+int *nextGreaterElement(int *nums1, int nums1Size, int *nums2, int nums2Size, int *returnSize);
 #ifdef __cplusplus
 }
 #endif

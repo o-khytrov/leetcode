@@ -289,3 +289,24 @@ int *findAnagrams(char *s, char *p, int *returnSize) {
     return ptr;
 }
 
+int *nextGreaterElement(int *nums1, int nums1Size, int *nums2, int nums2Size, int *returnSize) {
+    int *ans = malloc(sizeof(int) * nums1Size);
+    *returnSize = nums1Size;
+    int hash_map[1000];
+    for (int i = 0; i < nums2Size; i++)
+        hash_map[nums2[i]] = i;
+    for (int i = 0; i < nums1Size; i++) {
+        int nex_greater = -1;
+
+        for (int j = hash_map[nums1[i]] + 1; j < nums2Size; j++) {
+            if (nums2[j] > nums1[i]) {
+                nex_greater = nums2[j];
+                break;
+            }
+        }
+
+        ans[i] = nex_greater;
+    }
+    return ans;
+}
+

@@ -156,6 +156,36 @@ TEST(FindAnagrams, Case2) {
 
 }
 
+TEST(NextGreaterElement1, Case1) {
+
+    int resultSize = 0;
+    int nums1[] = {4, 2, 1};
+    int nums1Size = sizeof(nums1) / sizeof(nums1[0]);
+    int nums2[] = {1, 2, 3, 4};
+    int nums2Size = sizeof(nums1) / sizeof(nums2[0]);
+    int expected[] = {-1, 3, -1};
+    int *result = nextGreaterElement(nums1, nums1Size, nums2, nums2Size, &resultSize);
+    ASSERT_EQ(3, resultSize);
+    for (int i = 0; i < resultSize; ++i) {
+        ASSERT_EQ(expected[i], result[i]);
+    }
+}
+
+TEST(NextGreaterElement1, Case2) {
+
+    int resultSize = 0;
+    int nums1[] = {4, 1, 2};
+    int nums1Size = sizeof(nums1) / sizeof(nums1[0]);
+    int nums2[] = {1, 3, 4, 2};
+    int nums2Size = sizeof(nums1) / sizeof(nums2[0]);
+    int expected[] = {-1, 3, -1};
+    int *result = nextGreaterElement(nums1, nums1Size, nums2, nums2Size, &resultSize);
+    ASSERT_EQ(3, resultSize);
+    for (int i = 0; i < resultSize; ++i) {
+        ASSERT_EQ(expected[i], result[i]);
+    }
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
