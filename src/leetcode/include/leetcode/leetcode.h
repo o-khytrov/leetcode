@@ -52,11 +52,13 @@ int *nextGreaterElement(int *nums1, int nums1Size, int *nums2, int nums2Size, in
 //503. Next Greater Element II
 int *nextGreaterElements(int *nums, int numsSize, int *returnSize);
 //1189. Maximum Number of Balloons
-int maxNumberOfBalloons(char * text);
+int maxNumberOfBalloons(char *text);
 
-bool wordPattern(char * pattern, char * s);
+bool wordPattern(char *pattern, char *s);
 
-int** findDifference(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize, int** returnColumnSizes);
+int **findDifference(int *nums1, int nums1Size, int *nums2, int nums2Size, int *returnSize, int **returnColumnSizes);
+
+char *shortestCompletingWord(char *licensePlate, char **words, int wordsSize);
 #ifdef __cplusplus
 }
 #endif

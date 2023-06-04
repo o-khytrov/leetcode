@@ -3,7 +3,7 @@
 #include <limits.h>
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <ctype.h>
 #include <leetcode/leetcode.h>
 #include <leetcode/uthash.h>
 
@@ -427,4 +427,44 @@ int **findDifference(int *nums1, int nums1Size, int *nums2, int nums2Size, int *
     *returnColumnSizes = colSizes;
     return ans;
 
+}
+
+char *shortestCompletingWord(char *licensePlate, char **words, int wordsSize) {
+    int map[26] = {0};
+    int tmp[26] = {0};
+    while (*licensePlate) {
+        if (isalpha(*licensePlate)) {
+            map[tolower(*licensePlate) - 97]++;
+        }
+
+        licensePlate++;
+    }
+    int min_length = -1;
+    int word_index = 0;
+    for (int i = 0; i < wordsSize; i++) {
+        memset(tmp, 0, sizeof(tmp));
+        char *word = words[i];
+        int length = 0;
+        while (*word) {
+            tmp[*word - 97]++;
+            word++;
+            length++;
+        }
+
+        int completing = 1;
+        for (int l = 0; l < 26; l++) {
+
+            if (tmp[l] > map[l]) {
+                completing = 0;
+                break;
+            }
+        }
+        if (completing && (min_length == -1 || length < min_length)) {
+            printf("%s", words[i]);
+            min_length = length;
+            word_index = i;
+        }
+
+    }
+    return words[word_index];
 }

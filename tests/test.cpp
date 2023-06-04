@@ -275,6 +275,17 @@ TEST (FindDifferenceOfTwoArrays, TestCase1) {
 
 }
 
+TEST (ShortestCompletingWord, TestCase1) {
+
+    char *strs[] = {strdup("step"), strdup("steps"), strdup("stripe"), strdup("stepple")};  // Example input strings
+    int strsSize = sizeof(strs) / sizeof(strs[0]);   // Calculate the number of strings
+
+    char *result = shortestCompletingWord("1s3 PSt", strs, strsSize);
+
+    ASSERT_STREQ("steps", result);
+
+}
+
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
