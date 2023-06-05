@@ -468,3 +468,26 @@ char *shortestCompletingWord(char *licensePlate, char **words, int wordsSize) {
     }
     return words[word_index];
 }
+
+char **summaryRanges(int *nums, int numsSize, int *returnSize) {
+    char **result = (char *) malloc(sizeof(char *) * numsSize * 2);
+
+    for (int i = 0; i < numsSize; ++i) {
+        int num = nums[i];
+        while (i < numsSize - 1 && nums[i + 1] - nums[i] == 1) {
+            i++;
+        }
+        char *str = malloc(sizeof(char) * 5);
+        if (nums[i] - num == 0) {
+            //printf("%d\n", num);
+            sprintf(str, "%d", num);
+        } else {
+            //printf("%d->%d\n", num, nums[i]);
+            sprintf(str, "%d->%d", num, nums[i]);
+        }
+        result[*returnSize] = str;
+        (*returnSize)++;
+    }
+
+    return result;
+}

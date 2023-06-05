@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <leetcode/ones_and_zeros.h>
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -59,6 +60,8 @@ bool wordPattern(char *pattern, char *s);
 int **findDifference(int *nums1, int nums1Size, int *nums2, int nums2Size, int *returnSize, int **returnColumnSizes);
 
 char *shortestCompletingWord(char *licensePlate, char **words, int wordsSize);
+
+char **summaryRanges(int *nums, int numsSize, int *returnSize);
 #ifdef __cplusplus
 }
 #endif

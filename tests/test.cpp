@@ -298,6 +298,24 @@ TEST(OnesAndZeros, TestCase1) {
     ASSERT_EQ(4, result);
 }
 
+TEST(summaryRanges, TestCase1) {
+    int resultSize = 0;
+    int nums1[] = {0, 1, 2, 4, 5, 7};
+    int numsSize = sizeof(nums1) / sizeof(nums1[0]);   // Calculate the number of strings
+
+    char **result = summaryRanges(nums1, numsSize, &resultSize);
+
+    char *expected[] = {strdup("0->2"),
+                        strdup("4->5"),
+                        strdup("7")};
+
+    ASSERT_EQ(3, resultSize);
+
+    for (int i = 0; i < resultSize; ++i) {
+        ASSERT_STREQ(expected[i], result[i]);
+    }
+
+}
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
