@@ -1,5 +1,5 @@
 #include <stdbool.h>
-
+#include <leetcode/ones_and_zeros.h>
 #ifdef __cplusplus
 extern "C"
 {

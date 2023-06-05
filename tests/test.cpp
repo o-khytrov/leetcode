@@ -286,6 +286,18 @@ TEST (ShortestCompletingWord, TestCase1) {
 
 }
 
+TEST(OnesAndZeros, TestCase1) {
+    char *strs[] = {strdup("10"),
+                    strdup("0001"),
+                    strdup("111001"),
+                    strdup("1"),
+                    strdup("0")
+    };  // Example input strings
+    int strsSize = sizeof(strs) / sizeof(strs[0]);   // Calculate the number of strings
+    int result = findMaxForm(strs, strsSize, 5, 3);
+    ASSERT_EQ(4, result);
+}
+
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
