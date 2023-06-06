@@ -63,6 +63,7 @@ char *shortestCompletingWord(char *licensePlate, char **words, int wordsSize);
 
 char **summaryRanges(int *nums, int numsSize, int *returnSize);
 int islandPerimeter(int **grid, int gridSize, int *gridColSize);
+int missingNumber(int* nums, int numsSize);
 #ifdef __cplusplus
 }
 #endif
