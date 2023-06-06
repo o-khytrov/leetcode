@@ -62,6 +62,7 @@ int **findDifference(int *nums1, int nums1Size, int *nums2, int nums2Size, int *
 char *shortestCompletingWord(char *licensePlate, char **words, int wordsSize);
 
 char **summaryRanges(int *nums, int numsSize, int *returnSize);
+int islandPerimeter(int **grid, int gridSize, int *gridColSize);
 #ifdef __cplusplus
 }
 #endif

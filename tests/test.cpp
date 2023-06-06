@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <leetcode/leetcode.h>
+#include <stdlib.h>
 
 TEST(MultiplyTests, strStrTest) {
     const auto expected = 5;
@@ -315,6 +316,55 @@ TEST(summaryRanges, TestCase1) {
         ASSERT_STREQ(expected[i], result[i]);
     }
 
+}
+
+TEST(islandPerimeter, TestCase1) {
+    int numRows = 4;
+    int numCols = 4;
+
+    // Allocate memory for the grid
+    int **grid = (int **) malloc(numRows * sizeof(int *));
+    for (int i = 0; i < numRows; i++) {
+        grid[i] = (int *) malloc(numCols * sizeof(int));
+    }
+
+
+    grid[0][0] = 0;
+    grid[0][1] = 1;
+    grid[0][2] = 0;
+    grid[0][3] = 0;
+
+    grid[1][0] = 1;
+    grid[1][1] = 1;
+    grid[1][2] = 1;
+    grid[1][3] = 0;
+
+    grid[2][0] = 0;
+    grid[2][1] = 1;
+    grid[2][2] = 0;
+    grid[2][3] = 0;
+
+    grid[3][0] = 1;
+    grid[3][1] = 1;
+    grid[3][2] = 0;
+    grid[3][3] = 0;
+
+    int gridSize = numRows;
+
+    int *gridColSize = (int *) malloc(numRows * sizeof(int));
+    for (int i = 0; i < numRows; i++) {
+        gridColSize[i] = numCols;
+    }
+
+    int result = islandPerimeter(grid, gridSize, gridColSize);
+
+    ASSERT_EQ(16,result);
+    for (int i = 0; i < numRows; i++) {
+        free(grid[i]);
+    }
+
+    free(grid);
+    free(gridColSize);
 }
 
 int main(int argc, char **argv) {

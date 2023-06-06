@@ -491,3 +491,26 @@ char **summaryRanges(int *nums, int numsSize, int *returnSize) {
 
     return result;
 }
+
+int islandPerimeter(int **grid, int gridSize, int *gridColSize) {
+    int perimeter = 0;
+    for (int row = 0; row < gridSize; row++) {
+        int colSize = gridColSize[row];
+        for (int col = 0; col < colSize; col++) {
+
+            if (grid[row][col]) {
+                if (row == 0)perimeter += 1;
+                if (row == gridSize - 1)perimeter += 1;
+                if (row < gridSize - 1 && !grid[row + 1][col]) perimeter++;
+                if (row > 0 && !grid[row - 1][col]) perimeter++;
+
+                if (col == 0) perimeter++;
+                if (col == colSize - 1) perimeter++;
+                if (col < colSize - 1 && !grid[row][col + 1]) perimeter++;
+                if (col > 0 && !grid[row][col - 1]) perimeter++;
+            }
+        }
+
+    }
+    return perimeter;
+}
