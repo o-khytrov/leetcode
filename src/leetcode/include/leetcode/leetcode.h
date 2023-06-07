@@ -63,7 +63,12 @@ char *shortestCompletingWord(char *licensePlate, char **words, int wordsSize);
 
 char **summaryRanges(int *nums, int numsSize, int *returnSize);
 int islandPerimeter(int **grid, int gridSize, int *gridColSize);
-int missingNumber(int* nums, int numsSize);
+int missingNumber(int *nums, int numsSize);
+
+//405. Convert a Number to Hexadecimal
+char *toHex(int num);
+//1572. Matrix Diagonal Sum
+int diagonalSum(int **mat, int matSize, int *matColSize);
 #ifdef __cplusplus
 }
 #endif

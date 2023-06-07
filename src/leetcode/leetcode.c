@@ -518,10 +518,51 @@ int islandPerimeter(int **grid, int gridSize, int *gridColSize) {
 int missingNumber(int *nums, int numsSize) {
     int sum = 0;
     for (int i = 1; i <= numsSize; ++i) {
-        sum+=i;
+        sum += i;
     }
     for (int i = 0; i < numsSize; i++) {
-        sum-=nums[i];
+        sum -= nums[i];
     }
     return sum;
 }
+
+char *toHex(int num) {
+    int tmp = num;
+    char *buff = malloc(25 * sizeof(char));
+    char map[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    int position = 0;
+    while (tmp) {
+        if (tmp >= 16) {
+            int rem = tmp / 16;
+            buff[position] = map[rem];
+            tmp -= rem * 16;
+        } else {
+            buff[position] = map[tmp];
+            tmp = 0;
+        }
+
+        position++;
+
+    }
+    buff[position] = '\0';
+    return buff;
+}
+
+int diagonalSum(int **mat, int matSize, int *matColSize) {
+    int sum = 0;
+    int x = 0;
+    int y = 0;
+    int colSize = matColSize[0];
+    int colOffset = 0;
+    while (x < matSize) {
+        int left = y + colOffset;
+        int right = colSize - 1 - colOffset;
+        sum += mat[x][left];
+        if (left != right) sum += mat[x][right];
+        x++;
+        colOffset++;
+    }
+
+    return sum;
+}
+

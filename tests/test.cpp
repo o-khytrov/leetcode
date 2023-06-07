@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <leetcode/leetcode.h>
 #include <stdlib.h>
+#include <stdlib.h>
 
 TEST(MultiplyTests, strStrTest) {
     const auto expected = 5;
@@ -358,13 +359,56 @@ TEST(islandPerimeter, TestCase1) {
 
     int result = islandPerimeter(grid, gridSize, gridColSize);
 
-    ASSERT_EQ(16,result);
+    ASSERT_EQ(16, result);
     for (int i = 0; i < numRows; i++) {
         free(grid[i]);
     }
 
     free(grid);
     free(gridColSize);
+}
+
+TEST(ToHex, TestCase1) {
+    for (int n = 1; n < 100; ++n) {
+        std::stringstream ss;
+        ss << std::hex << n;
+        std::string res(ss.str());
+        char *hex = toHex(n);
+
+        ASSERT_STREQ(res.c_str(), hex);
+    }
+}
+
+TEST(MatrixDiagonalSum, TestCase1) {
+    int numRows = 3;
+    int numCols = 3;
+
+    // Allocate memory for the grid
+    int **grid = (int **) malloc(numRows * sizeof(int *));
+    for (int i = 0; i < numRows; i++) {
+        grid[i] = (int *) malloc(numCols * sizeof(int));
+    }
+
+
+    grid[0][0] = 1;
+    grid[0][1] = 2;
+    grid[0][2] = 3;
+
+    grid[1][0] = 4;
+    grid[1][1] = 5;
+    grid[1][2] = 6;
+
+    grid[2][0] = 7;
+    grid[2][1] = 8;
+    grid[2][2] = 9;
+
+
+    int *gridColSize = (int *) malloc(numRows * sizeof(int));
+    for (int i = 0; i < numRows; i++) {
+        gridColSize[i] = numCols;
+    }
+    int sum = diagonalSum(grid, numRows, gridColSize);
+    ASSERT_EQ(25, sum);
 }
 
 int main(int argc, char **argv) {
