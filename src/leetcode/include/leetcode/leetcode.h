@@ -69,6 +69,10 @@ int missingNumber(int *nums, int numsSize);
 char *toHex(int num);
 //1572. Matrix Diagonal Sum
 int diagonalSum(int **mat, int matSize, int *matColSize);
+//424. Longest Repeating Character Replacement
+int characterReplacement(char *s, int k);
+//1351. Count Negative Numbers in a Sorted Matrix
+int countNegatives(int **grid, int gridSize, int *gridRowSize);
 #ifdef __cplusplus
 }
 #endif

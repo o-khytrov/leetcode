@@ -411,6 +411,81 @@ TEST(MatrixDiagonalSum, TestCase1) {
     ASSERT_EQ(25, sum);
 }
 
+TEST(LongestRepeatedCharacterReplacement, TestCase1) {
+    int result = characterReplacement("ABAB", 2);
+    ASSERT_EQ(4, result);
+}
+
+TEST(countNegatives, TestCase1) {
+    int numRows = 4;
+    int numCols = 4;
+
+    // Allocate memory for the grid
+    int **grid = (int **) malloc(numRows * sizeof(int *));
+    for (int i = 0; i < numRows; i++) {
+        grid[i] = (int *) malloc(numCols * sizeof(int));
+    }
+    //[[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]
+
+    grid[0][0] = 4;
+    grid[0][1] = 3;
+    grid[0][2] = 2;
+    grid[0][3] = -1;
+
+    grid[1][0] = 3;
+    grid[1][1] = 2;
+    grid[1][2] = 1;
+    grid[1][3] = -1;
+
+    grid[2][0] = 1;
+    grid[2][1] = 1;
+    grid[2][2] = -1;
+    grid[2][3] = -2;
+
+    grid[3][0] = -1;
+    grid[3][1] = -1;
+    grid[3][2] = -2;
+    grid[3][3] = -3;
+
+    int *gridColSize = (int *) malloc(numRows * sizeof(int));
+    for (int i = 0; i < numRows; i++) {
+        gridColSize[i] = numCols;
+    }
+    int count = countNegatives(grid, numRows, gridColSize);
+    ASSERT_EQ(8, count);
+}
+
+TEST(countNegatives, TestCase2) {
+    int numRows = 4;
+    int numCols = 2;
+
+    // Allocate memory for the grid
+    int **grid = (int **) malloc(numRows * sizeof(int *));
+    for (int i = 0; i < numRows; i++) {
+        grid[i] = (int *) malloc(numCols * sizeof(int));
+    }
+    //[[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]
+
+    grid[0][0] = 3;
+    grid[0][1] = 2;
+
+    grid[1][0] = -3;
+    grid[1][1] = -3;
+
+    grid[2][0] = -3;
+    grid[2][1] = -3;
+
+    grid[3][0] = -3;
+    grid[3][1] = -3;
+
+    int *gridColSize = (int *) malloc(numRows * sizeof(int));
+    for (int i = 0; i < numRows; i++) {
+        gridColSize[i] = numCols;
+    }
+    int count = countNegatives(grid, numRows, gridColSize);
+    ASSERT_EQ(6, count);
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

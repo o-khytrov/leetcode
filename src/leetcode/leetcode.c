@@ -566,3 +566,58 @@ int diagonalSum(int **mat, int matSize, int *matColSize) {
     return sum;
 }
 
+int get_max_value(int *array, int arrayLength) {
+    int max_value = 0;
+    for (int i = 0; i < arrayLength; ++i) {
+        max_value = max_int(max_value, array[i]);
+    }
+    return max_value;
+}
+
+int characterReplacement(char *s, int k) {
+    int l = 0;
+    int map[26] = {0};
+    int result = 0;
+
+    int len = strlen(s);
+    for (int r = 0; r < len; ++r) {
+        map[s[r] - 65]++;
+        while ((r - l + 1) - get_max_value(&map, 26) > k) {
+            map[s[l] - 65]--;
+            l++;
+        }
+        result = max_int(result, r - l + 1);
+
+    }
+
+    return result;
+}
+
+int countNegatives(int **grid, int gridSize, int *gridRowSize) {
+    int count = 0;
+    int x = gridSize - 1;
+    int y = gridRowSize[x] - 1;
+
+    while (x >= 0 && y >= 0) {
+        if (grid[x][y] < 0) {
+            count++;
+        } else {
+            break;
+        }
+        if (grid[x][y] < 0 && grid[x][0] < 0) {
+            count += y;
+        } else {
+            for (int t = y - 1; t >= 0 && grid[x][t] < 0; t--) count++;
+        }
+        if (grid[x][y] < 0 && grid[0][y] < 0) {
+            count += x;
+        } else {
+            for (int t = x - 1; t >= 0 && grid[t][y] < 0; t--) count++;
+        }
+        x--;
+        y--;
+    }
+
+    return count;
+}
+
