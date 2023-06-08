@@ -621,3 +621,32 @@ int countNegatives(int **grid, int gridSize, int *gridRowSize) {
     return count;
 }
 
+void print_array(int *array, int start, int end) {
+    printf("[");
+    for (int i = start; i <= end; ++i) {
+        printf("%d", array[i]);
+        if (i != end) printf(",");
+    }
+    printf("]\n");
+
+}
+
+double findMaxAverage(int *nums, int numsSize, int k) {
+    int l = 0;
+    double sum = 0;
+    for (int i = 0; i < k; ++i) {
+        sum += nums[i];
+    }
+
+    double max_avg = sum / k ;
+    for (int r = k ; r < numsSize; r++) {
+        sum -= nums[l];
+        l++;
+        sum += nums[r];
+        int count = r - l + 1;
+        double avg = sum / count;
+        max_avg = avg > max_avg ? avg : max_avg;
+    }
+    return max_avg;
+}
+

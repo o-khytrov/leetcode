@@ -486,6 +486,24 @@ TEST(countNegatives, TestCase2) {
     ASSERT_EQ(6, count);
 }
 
+TEST(findMaxAverage, TestCase1) {
+    int nums[6] = {1, 12, -5, -6, 50, 3};
+    double result = findMaxAverage(nums, 6, 4);
+    ASSERT_EQ(12.75000, result);
+}
+
+TEST(findMaxAverage, TestCase2) {
+    int nums[1] = {-1};
+    double result = findMaxAverage(nums, 1, 1);
+    ASSERT_EQ(-1, result);
+}
+
+TEST(findMaxAverage, TestCase3) {
+    int nums[5] = {4, 0, 4, 3, 3};
+    double result = findMaxAverage(nums, 5, 5);
+    ASSERT_EQ(2.8, result);
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

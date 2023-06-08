@@ -73,6 +73,9 @@ int diagonalSum(int **mat, int matSize, int *matColSize);
 int characterReplacement(char *s, int k);
 //1351. Count Negative Numbers in a Sorted Matrix
 int countNegatives(int **grid, int gridSize, int *gridRowSize);
+//643. Maximum Average Subarray I
+double findMaxAverage(int *nums, int numsSize, int k);
+
 #ifdef __cplusplus
 }
 #endif
