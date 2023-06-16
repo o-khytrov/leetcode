@@ -638,8 +638,8 @@ double findMaxAverage(int *nums, int numsSize, int k) {
         sum += nums[i];
     }
 
-    double max_avg = sum / k ;
-    for (int r = k ; r < numsSize; r++) {
+    double max_avg = sum / k;
+    for (int r = k; r < numsSize; r++) {
         sum -= nums[l];
         l++;
         sum += nums[r];
@@ -648,5 +648,60 @@ double findMaxAverage(int *nums, int numsSize, int k) {
         max_avg = avg > max_avg ? avg : max_avg;
     }
     return max_avg;
+}
+
+void merge(int *array, int left, int mid, int right) {
+    int left_length = mid - left + 1;
+    int right_length = right - mid;
+
+    int left_subarray[left_length];
+    int right_subarray[right_length];
+    for (int i = 0; i < left_length; i++) {
+        left_subarray[i] = array[left + i];
+    }
+    for (int i = 0; i < right_length; i++) {
+        right_subarray[i] = array[mid + i + 1];
+    }
+
+    int r = 0;
+    int l = 0;
+    int k = 0;
+
+    while (r < right_length && l < left_length) {
+        if (left_subarray[l] <= right_subarray[r]) {
+            array[k] = left_subarray[l];
+            l++;
+        } else {
+            array[k] = right_subarray[r];
+            r++;
+        }
+        k++;
+    }
+    while (l < left_length) {
+        array[k] = left_subarray[l];
+        l++;
+        k++;
+    }
+    while (r < right_length) {
+        array[k] = right_subarray[r];
+        r++;
+        k++;
+    }
+}
+
+void merge_sort(int *array, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        merge_sort(array, left, mid);
+        merge_sort(array, mid + 1, right);
+        merge(array, left, mid, right);
+    }
+
+}
+
+int *sortArray(int *nums, int numsSize, int *returnSize) {
+    *returnSize = numsSize;
+    merge_sort(nums, 0, numsSize - 1);
+    return nums;
 }
 

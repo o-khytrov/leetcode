@@ -504,6 +504,19 @@ TEST(findMaxAverage, TestCase3) {
     ASSERT_EQ(2.8, result);
 }
 
+TEST(mergeSort, TestCase1) {
+    int nums[10] = {5, 0, 3, 2, 4, 8, 6, 9, 7, 1};
+    int sorted_expected[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int returnSize = 0;
+    int numsSize = sizeof(nums) / sizeof(nums[0]);
+    int *sorted = sortArray(nums, numsSize, &returnSize);
+
+    ASSERT_EQ(numsSize, returnSize);
+    for (int i = 0; i < returnSize; i++) {
+        ASSERT_EQ(sorted_expected[i], sorted[i]);
+    }
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

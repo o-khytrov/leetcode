@@ -75,7 +75,7 @@ int characterReplacement(char *s, int k);
 int countNegatives(int **grid, int gridSize, int *gridRowSize);
 //643. Maximum Average Subarray I
 double findMaxAverage(int *nums, int numsSize, int k);
-
+int *sortArray(int *nums, int numsSize, int *returnSize);
 #ifdef __cplusplus
 }
 #endif
