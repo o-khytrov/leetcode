@@ -705,3 +705,31 @@ int *sortArray(int *nums, int numsSize, int *returnSize) {
     return nums;
 }
 
+struct hash_entry {
+    int id;
+    int val;
+    UT_hash_handle hh;
+};
+
+int min(int a, int b) {
+    return a > b ? a : b;
+}
+
+int distributeCandies(int *candyType, int candyTypeSize) {
+    struct hash_entry *map = NULL;;
+
+    for (int i = 0; i < candyTypeSize; i++) {
+        int type = candyType[i];
+        struct hash_entry *s;
+        HASH_FIND_INT(map, &type, s);
+        if (s == NULL) {
+            s = (struct my_struct *) malloc(sizeof *s);
+            s->id = type;
+            HASH_ADD_INT(map, id, s);
+        }
+    }
+    int num_types;
+    num_types = HASH_COUNT(map);
+    return min(num_types, candyTypeSize / 2);
+}
+

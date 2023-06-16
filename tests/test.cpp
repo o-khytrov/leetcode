@@ -517,6 +517,16 @@ TEST(mergeSort, TestCase1) {
     }
 }
 
+TEST(distributeCandies, TestCase1) {
+    int nums[6] = {1, 1, 2, 2, 3, 3};
+
+    int numsSize = sizeof(nums) / sizeof(nums[0]);
+    int result = distributeCandies(nums, numsSize);
+
+    ASSERT_EQ(3, result);
+
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
