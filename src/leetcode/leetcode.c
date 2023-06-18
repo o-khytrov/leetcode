@@ -650,6 +650,20 @@ double findMaxAverage(int *nums, int numsSize, int k) {
     return max_avg;
 }
 
+char nextGreatestLetter(char* letters, int lettersSize, char target){
+    char result = '0';
+
+    for(int i = 0; i < lettersSize; i++)
+    {
+        if(letters[i]>target && letters[i]<=result)
+        {
+            result=letters[i];
+        }
+
+    }
+
+    return result;
+}
 void merge(int *array, int left, int mid, int right) {
     int left_length = mid - left + 1;
     int right_length = right - mid;
@@ -665,7 +679,7 @@ void merge(int *array, int left, int mid, int right) {
 
     int r = 0;
     int l = 0;
-    int k = 0;
+    int k = left;
 
     while (r < right_length && l < left_length) {
         if (left_subarray[l] <= right_subarray[r]) {
