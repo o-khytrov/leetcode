@@ -82,7 +82,6 @@ namespace TheKWeakestRowsInAMatrix
         [Theory]
         [InlineData("[[1,1,0,0,0], [1,1,1,1,0], [1,0,0,0,0], [1,1,0,0,0], [1,1,1,1,1]]", 3, "[2,0,3]")]
         [InlineData("[[1,1,1,1,1],[1,0,0,0,0],[1,1,0,0,0],[1,1,1,1,0],[1,1,1,1,1]]", 3, "[1,2,3]")]
-        [InlineData("[[1,1,0,0,0],[1,1,1,1,0],[1,0,0,0,0],[1,1,0,0,0],[1,1,1,1,1]]", 3, "[2,3,0]")]
         public void KWeakestRowsTest(string matrixJson, int k, string expectedResultJson)
         {
             var sut = new Solution();
