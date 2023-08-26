@@ -1,42 +1,43 @@
 /**
-Given two integer arrays nums1 and nums2, sorted in non-decreasing order, 
-return the minimum integer common to both arrays. If there is no common integer 
-amongst nums1 and nums2, return -1. 
+Given two integer arrays nums1 and nums2, sorted in non-decreasing order,
+return the minimum integer common to both arrays. If there is no common integer
+amongst nums1 and nums2, return -1.
 
- Note that an integer is said to be common to nums1 and nums2 if both arrays 
-have at least one occurrence of that integer. 
+ Note that an integer is said to be common to nums1 and nums2 if both arrays
+have at least one occurrence of that integer.
 
- 
- Example 1: 
 
- 
+ Example 1:
+
+
 Input: nums1 = [1,2,3], nums2 = [2,4]
 Output: 2
 Explanation: The smallest element common to both arrays is 2, so we return 2.
- 
 
- Example 2: 
 
- 
+ Example 2:
+
+
 Input: nums1 = [1,2,3,6], nums2 = [2,3,4,5]
 Output: 2
-Explanation: There are two common elements in the array 2 and 3 out of which 2 
+Explanation: There are two common elements in the array 2 and 3 out of which 2
 is the smallest, so 2 is returned.
- 
 
- 
- Constraints: 
 
- 
- 1 <= nums1.length, nums2.length <= 10⁵ 
- 1 <= nums1[i], nums2[j] <= 10⁹ 
- Both nums1 and nums2 are sorted in non-decreasing order. 
- 
+
+ Constraints:
+
+
+ 1 <= nums1.length, nums2.length <= 10⁵
+ 1 <= nums1[i], nums2[j] <= 10⁹
+ Both nums1 and nums2 are sorted in non-decreasing order.
+
 
  Related Topics Array Hash Table Two Pointers Binary Search 👍 442 👎 9
 
 */
 
+using System;
 using System.Text.Json;
 using Xunit;
 
@@ -46,13 +47,14 @@ namespace MinimumCommonValue
     {
         [Theory]
         [InlineData("[1,2,3]", "[2,4]", 2)]
+        [InlineData("[1,2,3,6]", "[2,3,4,5]", 2)]
         public void MinimumCommonValueTest(string nums1Json, string nums2Json, int expectedResult)
         {
             var sut = new Solution();
             var nums1 = JsonSerializer.Deserialize<int[]>(nums1Json);
             var nums2 = JsonSerializer.Deserialize<int[]>(nums2Json);
             var result = sut.GetCommon(nums1, nums2);
-            
+
             Assert.Equal(expectedResult, result);
         }
     }
@@ -62,7 +64,47 @@ namespace MinimumCommonValue
     {
         public int GetCommon(int[] nums1, int[] nums2)
         {
-            return -1;
+            var minCommonValue = -1;
+            for (int i = 0; i < nums1.Length; i++)
+            {
+                var num = nums1[i];
+                if (minCommonValue > 0 && num > minCommonValue)
+                {
+                    continue;
+                }
+
+                var l = 0;
+                var r = nums2.Length - 1;
+
+                while (r >= l)
+                {
+                    var mid = l + (r - l) / 2;
+                    var num2 = nums2[mid];
+                    if (num2 == num)
+                    {
+                        if (minCommonValue == -1)
+                        {
+                            minCommonValue = num2;
+                        }
+                        else
+                        {
+                            minCommonValue = Math.Min(num, minCommonValue);
+                        }
+                    }
+
+                    if (num2 > num)
+                    {
+                        r = mid - 1;
+                    }
+                    else
+                    {
+                        l = mid + 1;
+                    }
+                }
+            }
+
+
+            return minCommonValue;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
