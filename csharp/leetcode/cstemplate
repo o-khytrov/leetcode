@@ -1,0 +1,16 @@
+using Xunit;
+${question.content}
+namespace $!velocityTool.camelCaseName(${question.title})
+{ 
+    public class Tests
+    {
+        [Theory]
+        [InlineData]
+        public void $!velocityTool.camelCaseName(${question.title})Test()
+        {
+        }
+        
+    }
+    
+${question.code}
+}
