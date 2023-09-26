@@ -42,45 +42,13 @@ namespace MiddleOfTheLinkedList
 {
     public class Tests
     {
-        private ListNode Json2LinkedList(string json)
-        {
-            var list = JsonSerializer.Deserialize<int[]>(json);
-            var root = new ListNode();
-            var head = root;
-            for (int i = 0; i < list.Length; i++)
-            {
-                head.val = list[i];
-                if (i < list.Length - 1)
-                {
-                    head.next = new ListNode();
-                }
-
-                head = head.next;
-            }
-
-            return root;
-        }
-
-        private string LinkedList2Json(ListNode root)
-        {
-            var head = root;
-            var list = new List<int>();
-            while (head is not null)
-            {
-                list.Add(head.val);
-                head = head.next;
-            }
-
-            return JsonSerializer.Serialize(list);
-        }
-
         [Theory]
         [InlineData("[1,2,3,4,5]", "[3,4,5]")]
         public void MiddleOfTheLinkedListTest(string linkedListJson, string expectedResult)
         {
             var sut = new Solution();
-            var input = Json2LinkedList(linkedListJson);
-            var result = LinkedList2Json(sut.MiddleNode(input));
+            var input = Helper.Json2LinkedList(linkedListJson);
+            var result = Helper.LinkedList2Json(sut.MiddleNode(input));
             Assert.Equal(expectedResult, result);
         }
     }
