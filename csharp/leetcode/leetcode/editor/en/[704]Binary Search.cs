@@ -45,6 +45,7 @@ namespace BinarySearch
         [InlineData("[-1,0,3,5,9,12]", 9, 4)]
         [InlineData("[-1,0,3,5,9,12]", 2, -1)]
         [InlineData("[-1,0,3,5,9,12]", 13, -1)]
+        [InlineData("[5]", 5, 0)]
         public void BinarySearchTest(string numsJson, int target, int expectedResult)
         {
             var nums = JsonSerializer.Deserialize<int[]>(numsJson) ?? throw new ArgumentException("Invalid Json");
@@ -58,23 +59,24 @@ namespace BinarySearch
         public int Search(int[] nums, int target)
         {
             var l = 0;
-            var r = nums.Length-1;
+            var r = nums.Length - 1;
+
             while (l <= r)
             {
-                var m = l + (r - l) / 2;
-                var midVal = nums[m];
-                if (midVal == target)
+                var mid = l + (r - l) / 2;
+                var val = nums[mid];
+                if (val == target)
                 {
-                    return m;
+                    return mid;
                 }
 
-                if (midVal > target)
+                if (val > target)
                 {
-                    r = m - 1;
+                    r = mid - 1;
                 }
                 else
                 {
-                    l = m + 1;
+                    l = mid + 1;
                 }
             }
 
