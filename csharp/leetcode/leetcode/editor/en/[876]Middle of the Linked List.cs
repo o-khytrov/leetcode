@@ -36,6 +36,7 @@ the second one.
 
 using System.Collections.Generic;
 using System.Text.Json;
+using leetcode.CommonClasses;
 using Xunit;
 
 namespace MiddleOfTheLinkedList
@@ -53,19 +54,7 @@ namespace MiddleOfTheLinkedList
         }
     }
 
-    public class ListNode
-    {
-        public int val;
-        public ListNode next;
-
-        public ListNode(int val = 0, ListNode next = null)
-        {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
-//leetcode submit region begin(Prohibit modification and deletion)
+    //leetcode submit region begin(Prohibit modification and deletion)
 
     public class Solution
     {

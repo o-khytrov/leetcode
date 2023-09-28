@@ -41,6 +41,7 @@ Could you implement both?
 */
 
 using System.Text.Json;
+using leetcode.CommonClasses;
 using MiddleOfTheLinkedList;
 using Xunit;
 
