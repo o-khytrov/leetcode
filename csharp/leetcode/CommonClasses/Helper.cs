@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json;
-using MiddleOfTheLinkedList;
 
 namespace leetcode.CommonClasses;
 
 public class Helper
 {
-    public TreeNode InsertLevelOrder(int[] arr, int i)
+    public static TreeNode InsertLevelOrder(int?[] arr, int i)
     {
         TreeNode root = null;
         // Base case for recursion
-        if (i < arr.Length)
+        if (i < arr.Length && arr[i] is not null)
         {
-            root = new TreeNode(arr[i]);
+            root = new TreeNode(arr[i].Value);
 
             // insert left child
             root.left = InsertLevelOrder(arr, 2 * i + 1);
@@ -40,7 +39,7 @@ public class Helper
     {
         var array = JsonSerializer.Deserialize<int?[]>(json)
                     ?? throw new ArgumentException("Invalid Json");
-        return null;
+        return InsertLevelOrder(array, 0);
     }
 
     public static ListNode Json2LinkedList(string json)
