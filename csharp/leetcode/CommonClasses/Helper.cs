@@ -73,4 +73,10 @@ public class Helper
 
         return JsonSerializer.Serialize(list);
     }
+
+    public static int[][] ToIntMatrix(string gridJson)
+    {
+        return JsonSerializer.Deserialize<int[][]>(gridJson)
+               ?? throw new ArgumentException("InvalidJson");
+    }
 }
