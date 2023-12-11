@@ -39,13 +39,6 @@ using Xunit;
 
 namespace SumOfLeftLeaves
 {
-    public class Tests
-    {
-        [Theory]
-        public void SumOfLeftLeavesTest()
-        {
-        }
-    }
 
 //leetcode submit region begin(Prohibit modification and deletion)
     /**
