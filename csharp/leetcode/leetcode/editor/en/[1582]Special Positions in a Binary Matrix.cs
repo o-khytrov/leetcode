@@ -38,7 +38,7 @@ Explanation: (0, 0), (1, 1) and (2, 2) are special positions.
 */
 
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Text.Json;
 using Xunit;
 
@@ -61,41 +61,37 @@ namespace SpecialPositionsInABinaryMatrix
 //leetcode submit region begin(Prohibit modification and deletion)
     public class Solution
     {
-        private int CheckRow(int[] row)
+        public int NumSpecial(int[][] mat)
         {
-            var found = 0;
-            var index = -1;
-            for (int i = 0; i < row.Length; i++)
+            var rowMap = new Dictionary<int, int>();
+            var colMap = new Dictionary<int, int>();
+            var count = 0;
+            for (var r = 0; r < mat.Length; r++)
             {
-                if (row[i] == 1)
+                for (var c = 0; c < mat[r].Length; c++)
                 {
-                    if (index >= 0)
+                    var val = mat[r][c];
+                    if (val == 1)
                     {
-                        return -1;
-                    }
+                        if (!rowMap.TryAdd(r, 1))
+                        {
+                            rowMap[r]++;
+                        }
 
-                    index = i;
+                        if (!colMap.TryAdd(c, 1))
+                        {
+                            colMap[c]++;
+                        }
+                    }
                 }
             }
 
-            return index;
-        }
-
-        public int NumSpecial(int[][] mat)
-        {
-            var count = 0;
-            for (int r = 0; r < mat.Length; r++)
+            for (var r = 0; r < mat.Length; r++)
             {
-                var i = CheckRow(mat[r]);
-                if (i != -1)
+                for (var c = 0; c < mat[r].Length; c++)
                 {
-                    var sum = 0;
-                    for (int j = 0; j < mat.Length; j++)
-                    {
-                        sum += mat[j][i];
-                    }
-
-                    if (sum == 1)
+                    var val = mat[r][c];
+                    if (val == 1 && rowMap[r] == 1 && colMap[c] == 1)
                     {
                         count++;
                     }
