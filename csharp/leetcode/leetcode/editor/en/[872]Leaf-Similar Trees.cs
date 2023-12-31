@@ -50,10 +50,6 @@ namespace LeafSimilarTrees
 {
     public class Tests
     {
-        [Theory]
-        public void LeafSimilarTreesTest()
-        {
-        }
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
