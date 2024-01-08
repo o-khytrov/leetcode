@@ -42,10 +42,6 @@ namespace RangeSumOfBST
 {
     public class Tests
     {
-        [Theory]
-        public void RangeSumOfBSTTest()
-        {
-        }
     }
 
 //leetcode submit region begin(Prohibit modification and deletion)
