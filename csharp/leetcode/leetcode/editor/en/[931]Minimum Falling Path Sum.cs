@@ -47,6 +47,7 @@ namespace MinimumFallingPathSum
         [Theory]
         [InlineData("[[2,1,3],[6,5,4],[7,8,9]]", 13)]
         [InlineData("[[-19,57],[-40,-5]]", -59)]
+        [InlineData("[[100,-42,-46,-41],[31,97,10,-10],[-58,-51,82,89],[51,81,69,-51]]", -36)]
         public void MinimumFallingPathSumTest(string matrixJson, int expectedResult)
         {
             var matrix = JsonSerializer.Deserialize<int[][]>(matrixJson)
@@ -60,40 +61,46 @@ namespace MinimumFallingPathSum
     {
         private Dictionary<(int, int), int> _memo = new Dictionary<(int, int), int>();
 
-        private int FindPath(int[][] matrix, int r, int c)
+        private int FindPath(int[][] matrix, int col, int row)
         {
-            if (c > matrix[0].Length - 1 || c < 0)
+            if (row < 0 || row > matrix.Length - 1 || col < 0 || col > matrix[row].Length - 1)
             {
-                return Int32.MaxValue;
+                return int.MaxValue;
             }
 
-            var val = matrix[r][c];
-            if (r == matrix.Length - 1)
+            if (row == matrix.Length - 1 && col >= 0 && col < matrix.Length)
             {
-                return val;
+                return matrix[row][col];
             }
 
-            if (_memo.ContainsKey((r, c)))
+            if (_memo.ContainsKey((row, col)))
             {
-                return _memo[(r, c)];
+                return _memo[(row, col)];
             }
 
-            var down = FindPath(matrix, r + 1, c);
-            var right = FindPath(matrix, r + 1, c + 1);
-            var left = FindPath(matrix, r + 1, c - 1);
-            _memo[(r, c)] = val + Math.Min(Math.Min(down, left), right);
-            return _memo[(r, c)];
+            var downPath = FindPath(matrix, col, row + 1);
+            var leftPath = FindPath(matrix, col - 1, row + 1);
+            var rightPath = FindPath(matrix, col + 1, row + 1);
+            var minPath = int.MaxValue;
+            minPath = Math.Min(minPath, leftPath);
+            minPath = Math.Min(minPath, rightPath);
+            minPath = Math.Min(minPath, downPath);
+
+            var sum = minPath + matrix[row][col];
+
+            _memo[(row, col)] = sum;
+            return sum;
         }
 
         public int MinFallingPathSum(int[][] matrix)
         {
-            var minSum = int.MaxValue;
-            for (int c = 0; c < matrix[0].Length; c++)
+            var minPathSum = int.MaxValue;
+            for (int i = 0; i < matrix[0].Length; i++)
             {
-                minSum = Math.Min(minSum, FindPath(matrix, 0, c));
+                minPathSum = Math.Min(minPathSum, FindPath(matrix, i, 0));
             }
 
-            return minSum;
+            return minPathSum;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
