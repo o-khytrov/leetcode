@@ -1,0 +1,12 @@
+${question.content}
+import unittest
+
+class $!velocityTool.camelCaseName(${question.titleSlug})_Test(unittest.TestCase):
+
+    def test_$!velocityTool.smallCamelCaseName(${question.titleSlug})(self):
+        pass
+
+
+if __name__ == '__main__':
+    unittest.main()
+${question.code}
