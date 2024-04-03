@@ -57,7 +57,8 @@ class WordSearch_Test(unittest.TestCase):
         test_data = [
             ([["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "ABCCED", True),
             ([["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "SEE", True),
-            ([["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "ABCB", False)
+            ([["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]], "ABCB", False),
+            ([["a", "b"], ["c", "d"]], "cdba", True)
         ]
         for grid, word, expected in test_data:
             with self.subTest(grid=grid, word=word, expected=expected):
@@ -70,40 +71,28 @@ if __name__ == '__main__':
 
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
-    def exist(self, board: List[List[str]], word: str) -> bool:
-
-        n = len(board)
-        w = len(board[0])
-
-        def dfs(row, col, pos, visited):
-            if pos == len(word):
-                return True
-            if row < 0 or row > n - 1 or col < 0 or col > w - 1:
-                return False
-            if (row, col) in visited:
-                return False
-            val = board[row][col]
-            if val != word[pos]:
-                return False
-            visited.add((row, col))
-            if dfs(row - 1, col, pos + 1, set(visited)):
-                return True
-
-            if dfs(row + 1, col, pos + 1, set(visited)):
-                return True
-
-            if dfs(row, col + 1, pos + 1, set(visited)):
-                return True
-
-            if dfs(row, col - 1, pos + 1, set(visited)):
-                return True
-
+    def dfs(self, board, row, col, word, index):
+        if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]):
             return False
 
-        for r, row in enumerate(board):
-            for c, col in enumerate(row):
-                if col == word[0]:
-                    if dfs(r, c, 0, set()):
+        if board[row][col] != word[index]:
+            return False
+        if index == len(word) - 1:
+            return True
+        tmp = board[row][col]
+        board[row][col] = '\0'
+        up = self.dfs(board, row + 1, col, word, index + 1)
+        down = self.dfs(board, row - 1, col, word, index + 1)
+        right = self.dfs(board, row, col + 1, word, index + 1)
+        left = self.dfs(board, row, col - 1, word, index + 1)
+        board[row][col] = tmp
+        return up or down or right or left
+
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        for row in range(len(board)):
+            for column in range(len(board[row])):
+                if board[row][column] == word[0]:
+                    if self.dfs(board, row, column, word, 0):
                         return True
         return False
 
